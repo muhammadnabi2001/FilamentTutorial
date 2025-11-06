@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\States\Schemas;
 
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -11,9 +12,13 @@ class StateForm
     {
         return $schema
             ->components([
-                TextInput::make('country_id')
+                Select::make('country_id')
+                    ->relationship(name: 'country', titleAttribute: 'name')
                     ->required()
-                    ->numeric(),
+                    ->searchable()
+                    ->preload()
+                    // ->multiple()
+                    ,
                 TextInput::make('name')
                     ->required(),
             ]);

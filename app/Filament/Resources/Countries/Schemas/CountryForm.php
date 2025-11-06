@@ -12,7 +12,15 @@ class CountryForm
         return $schema
             ->components([
                 TextInput::make('name')
-                    ->required(),
+                    ->required()
+                    ->maxLength(255),
+                TextInput::make('code')
+                ->required()
+                ->maxLength(3),
+                TextInput::make('phonecode')
+                ->required()
+                ->numeric()
+                ->maxLength(5)
             ]);
     }
 }

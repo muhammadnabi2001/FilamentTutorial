@@ -15,7 +15,13 @@ class CountriesTable
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('code')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('phonecode')
+                    ->numeric(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

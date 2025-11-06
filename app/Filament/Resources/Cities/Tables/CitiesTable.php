@@ -15,8 +15,7 @@ class CitiesTable
     {
         return $table
             ->columns([
-                TextColumn::make('state_id')
-                    ->numeric()
+                TextColumn::make('state.name')
                     ->sortable(),
                 TextColumn::make('name')
                     ->searchable(),

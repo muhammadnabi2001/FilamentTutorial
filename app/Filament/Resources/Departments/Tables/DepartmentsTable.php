@@ -17,6 +17,7 @@ class DepartmentsTable
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
+                TextColumn::make('employees_count')->counts('employees'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

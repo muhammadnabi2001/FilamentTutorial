@@ -23,7 +23,8 @@ class StatesTable
                     ->sortable()
                     // ->hidden(auth()->user()->email === "xoliqulovmuhammadnabi@gmail.com")
                     // ->visible(auth()->user()->email === "xoliqulovmuhammadnabi@gmail.com")
-                    ->searchable(isIndividual: true),
+                    // ->searchable(isIndividual: true),
+                    ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

@@ -14,11 +14,16 @@ class StatesTable
     {
         return $table
             ->columns([
-                TextColumn::make('country_id')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('name')
+                TextColumn::make('country.name')
+                    ->sortable()
                     ->searchable(),
+                    // ->searchable(isIndividual: true, isGlobal: false),
+                TextColumn::make('name')
+                    ->label('State name')
+                    ->sortable()
+                    // ->hidden(auth()->user()->email === "xoliqulovmuhammadnabi@gmail.com")
+                    // ->visible(auth()->user()->email === "xoliqulovmuhammadnabi@gmail.com")
+                    ->searchable(isIndividual: true),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -28,6 +33,7 @@ class StatesTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            // ->defaultSort('country.name', 'desc')
             ->filters([
                 //
             ])

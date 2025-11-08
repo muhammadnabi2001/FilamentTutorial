@@ -5,6 +5,7 @@ namespace App\Filament\Resources\States;
 use App\Filament\Resources\States\Pages\CreateState;
 use App\Filament\Resources\States\Pages\EditState;
 use App\Filament\Resources\States\Pages\ListStates;
+use App\Filament\Resources\States\RelationManagers\CitiesRelationManager;
 use App\Filament\Resources\States\Schemas\StateForm;
 use App\Filament\Resources\States\Tables\StatesTable;
 use App\Models\State;
@@ -57,7 +58,7 @@ class StateResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            CitiesRelationManager::class
         ];
     }
 

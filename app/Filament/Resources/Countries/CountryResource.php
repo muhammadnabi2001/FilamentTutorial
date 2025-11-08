@@ -5,6 +5,8 @@ namespace App\Filament\Resources\Countries;
 use App\Filament\Resources\Countries\Pages\CreateCountry;
 use App\Filament\Resources\Countries\Pages\EditCountry;
 use App\Filament\Resources\Countries\Pages\ListCountries;
+use App\Filament\Resources\Countries\RelationManagers\EmployeesRelationManager;
+use App\Filament\Resources\Countries\RelationManagers\StatesRelationManager;
 use App\Filament\Resources\Countries\Schemas\CountryForm;
 use App\Filament\Resources\Countries\Tables\CountriesTable;
 use App\Models\Country;
@@ -31,9 +33,9 @@ class CountryResource extends Resource
     protected static ?string $navigationLabel = 'Countries';
 
     protected static ?string $modelLabel = 'Employees Country';
-    
+
     protected static ?string $slug = 'employees-country';
-    
+
     protected static ?int $navigationSort = 1;
 
 
@@ -50,18 +52,20 @@ class CountryResource extends Resource
     {
         return $schema
             ->components([
-                
+
                 Section::make('Country info')->schema([
                     TextEntry::make('name')->label('Name'),
                     TextEntry::make('code')->label('Country Code'),
                     TextEntry::make('phonecode')->label('Phone Code'),
-                ])->columnSpanFull()->columns(3)
+                ])->columnSpanFull()->columns(3),
+
             ]);
     }
     public static function getRelations(): array
     {
         return [
-            //
+            // StatesRelationManager::class
+            EmployeesRelationManager::class,
         ];
     }
 
@@ -70,6 +74,7 @@ class CountryResource extends Resource
         return [
             'index' => ListCountries::route('/'),
             'create' => CreateCountry::route('/create'),
+            'view' => Pages\ViewCountry::route('/{record}'),
             'edit' => EditCountry::route('/{record}/edit'),
         ];
     }

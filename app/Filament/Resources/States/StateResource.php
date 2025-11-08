@@ -9,7 +9,9 @@ use App\Filament\Resources\States\Schemas\StateForm;
 use App\Filament\Resources\States\Tables\StatesTable;
 use App\Models\State;
 use BackedEnum;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
@@ -40,7 +42,18 @@ class StateResource extends Resource
     {
         return StatesTable::configure($table);
     }
-
+    public static function infolist(Schema $schema): Schema
+    {
+        return $schema
+            ->components([
+                // TextEntry::make('country.name')->label('Country Name'),
+                // TextEntry::make('name')->label('State Name'),
+                Section::make('State info')->schema([
+                    TextEntry::make('country.name')->label('Country Name'),
+                    TextEntry::make('name')->label('State Name'),
+                ])->columnSpanFull()->columns(2)
+            ]);
+    }
     public static function getRelations(): array
     {
         return [

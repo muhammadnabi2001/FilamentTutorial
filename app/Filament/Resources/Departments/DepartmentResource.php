@@ -11,10 +11,13 @@ use App\Filament\Resources\Departments\Schemas\DepartmentInfolist;
 use App\Filament\Resources\Departments\Tables\DepartmentsTable;
 use App\Models\Department;
 use BackedEnum;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 use UnitEnum;
 
 class DepartmentResource extends Resource
@@ -22,7 +25,7 @@ class DepartmentResource extends Resource
     protected static ?string $model = Department::class;
 
     protected static string|BackedEnum|null $navigationIcon = "heroicon-o-academic-cap";
-    
+
     protected static string|UnitEnum|null $navigationGroup = "System Management";
 
     protected static ?string $recordTitleAttribute = 'Departments';
@@ -40,7 +43,17 @@ class DepartmentResource extends Resource
 
     public static function infolist(Schema $schema): Schema
     {
-        return DepartmentInfolist::configure($schema);
+        // return DepartmentInfolist::configure($schema);
+        return $schema
+            ->components([
+
+                Section::make('Department Info')->schema([
+                    TextEntry::make('name'),
+                    TextEntry::make('Employee_count')->state(function (Model $record): int {
+                        return $record->employees()->count();
+                    }),
+                ])->columnSpanFull()->columns(2)
+            ]);
     }
 
     public static function table(Table $table): Table

@@ -11,7 +11,9 @@ use App\Filament\Resources\Cities\Schemas\CityInfolist;
 use App\Filament\Resources\Cities\Tables\CitiesTable;
 use App\Models\City;
 use BackedEnum;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
@@ -40,14 +42,23 @@ class CityResource extends Resource
 
     public static function infolist(Schema $schema): Schema
     {
-        return CityInfolist::configure($schema);
+        // return CityInfolist::configure($schema);
+        return $schema
+            ->components([
+                // TextEntry::make('country.name')->label('Country Name'),
+                // TextEntry::make('name')->label('State Name'),
+                Section::make('City info')->schema([
+                    TextEntry::make('state.name')->label('State Name'),
+                    TextEntry::make('name')->label('City Name'),
+                ])->columnSpanFull()->columns(2)
+            ]);
     }
 
     public static function table(Table $table): Table
     {
         return CitiesTable::configure($table);
     }
-
+    
     public static function getRelations(): array
     {
         return [
@@ -60,7 +71,7 @@ class CityResource extends Resource
         return [
             'index' => ListCities::route('/'),
             'create' => CreateCity::route('/create'),
-            'view' => ViewCity::route('/{record}'),
+            // 'view' => ViewCity::route('/{record}'),
             'edit' => EditCity::route('/{record}/edit'),
         ];
     }

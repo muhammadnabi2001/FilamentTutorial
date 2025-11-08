@@ -9,7 +9,9 @@ use App\Filament\Resources\Countries\Schemas\CountryForm;
 use App\Filament\Resources\Countries\Tables\CountriesTable;
 use App\Models\Country;
 use BackedEnum;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
@@ -44,7 +46,18 @@ class CountryResource extends Resource
     {
         return CountriesTable::configure($table);
     }
-
+    public static function infolist(Schema $schema): Schema
+    {
+        return $schema
+            ->components([
+                
+                Section::make('Country info')->schema([
+                    TextEntry::make('name')->label('Name'),
+                    TextEntry::make('code')->label('Country Code'),
+                    TextEntry::make('phonecode')->label('Phone Code'),
+                ])->columnSpanFull()->columns(3)
+            ]);
+    }
     public static function getRelations(): array
     {
         return [

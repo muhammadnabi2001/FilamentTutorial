@@ -105,10 +105,10 @@ class EmployeesForm
                 ])
                     ->columnSpanFull()
                     ->columns(2),
-                // Section::make('test')
-                // ->schema([
-                //     MarkdownEditor::make('content')
-                // ])->columnSpanFull()
+                Section::make('test')
+                ->schema([
+                    MarkdownEditor::make('content')
+                ])->columnSpanFull(),
                 // Builder::make('content')
                 //     ->blocks([
                 //         Block::make('heading')
@@ -181,7 +181,7 @@ class EmployeesForm
                 //     ->range(minValue: 0, maxValue: 100)
                 //     ->tooltips()
                 // CodeEditor::make('code')
-                //     ->language(Language::JavaScript)
+                //     ->language(Language::Php)
             ]);
     }
 }

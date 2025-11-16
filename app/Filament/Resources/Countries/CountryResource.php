@@ -64,7 +64,7 @@ class CountryResource extends Resource
     public static function getRelations(): array
     {
         return [
-            // StatesRelationManager::class
+            StatesRelationManager::class,
             EmployeesRelationManager::class,
         ];
     }

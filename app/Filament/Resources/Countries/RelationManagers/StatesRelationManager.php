@@ -35,8 +35,8 @@ class StatesRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('name')
             ->columns([
+                TextColumn::make('id'),
                 TextColumn::make('name')
-                    ->searchable(),
             ])
             ->filters([
                 //

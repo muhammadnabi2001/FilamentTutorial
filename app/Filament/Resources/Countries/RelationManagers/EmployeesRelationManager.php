@@ -35,8 +35,18 @@ class EmployeesRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('first_name')
             ->columns([
-                TextColumn::make('first_name')
-                    ->searchable(),
+                TextColumn::make('first_name'),
+                TextColumn::make('last_name'),
+                TextColumn::make('middle_name')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('address')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('zip_code'),
+                TextColumn::make('date_of_birth')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('date_hired')
+                    ->sortable(),
             ])
             ->filters([
                 //

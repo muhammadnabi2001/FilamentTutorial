@@ -22,6 +22,6 @@ class Employee extends Model
     }
     public function city(): BelongsTo
     {
-        return $this->belongsTo(City::class, 'city_id');
+        return $this->belongsTo(City::class);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\States;
 
+use App\Filament\Resources\Countries\RelationManagers\EmployeesRelationManager;
 use App\Filament\Resources\States\Pages\CreateState;
 use App\Filament\Resources\States\Pages\EditState;
 use App\Filament\Resources\States\Pages\ListStates;
@@ -58,7 +59,8 @@ class StateResource extends Resource
     public static function getRelations(): array
     {
         return [
-            CitiesRelationManager::class
+            CitiesRelationManager::class,
+            EmployeesRelationManager::class
         ];
     }
 

@@ -36,6 +36,8 @@ class CityResource extends Resource
 
     protected static ?int $navigationSort = 3;
 
+    public static bool $isScopedToTenant = false;
+
     public static function form(Schema $schema): Schema
     {
         return CityForm::configure($schema);

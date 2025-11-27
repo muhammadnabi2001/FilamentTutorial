@@ -28,37 +28,39 @@ class EmployeesResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = "Employee Management";
 
-    protected static ?string $recordTitleAttribute = 'first_name';
+    protected static ?string $recordTitleAttribute = 'FirstName';
 
 
     public static function getGlobalSearchResultTitle(Model $record): string|Htmlable
     {
         return $record->first_name;
+        //the result's title will be first_name
     }
 
     public static function getGloballySearchableAttributes(): array
     {
-        return ['first_name', 'last_name'];
+        return ['first_name', 'last_name', 'middle_name', 'country.name'];
     }
 
     public static function getGlobalSearchResultDetails(Model $record): array
     {
         return [
-            'Name' => $record->first_name,
-            'Email' => $record->last_name,
+            'Country' => $record->country->name,
+            // 'Last name' => $record->last_name,
         ];
     }
-    // public static function getGlobalSearchEloquentQuery(): Builder
-    // {
-    //     $query = parent::getGlobalSearchEloquentQuery();
-
-    //     if (! auth()->user()?->can('SearchCustomers')) {
-    //         // Block search results
-    //         return $query->whereRaw('1=0');
-    //     }
-
-    //     return $query;
-    // }
+    public static function getGlobalSearchEloquentQuery(): Builder
+    {
+        return parent::getGlobalSearchEloquentQuery()->with(['country']);
+    }
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return static::getModel()::count() > 10 ? 'warning' : 'success';
+    }
     public static function form(Schema $schema): Schema
     {
         return EmployeesForm::configure($schema);

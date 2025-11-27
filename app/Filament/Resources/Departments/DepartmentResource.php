@@ -37,6 +37,17 @@ class DepartmentResource extends Resource
 
     protected static ?int $navigationSort = 4;
 
+    public static bool $isScopedToTenant = false;
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return static::getModel()::count() > 10 ? 'warning' : 'success';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return DepartmentForm::configure($schema);

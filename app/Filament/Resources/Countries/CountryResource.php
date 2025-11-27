@@ -28,7 +28,7 @@ class CountryResource extends Resource
 
     protected static string | UnitEnum | null $navigationGroup = 'System Management';
 
-    protected static ?string $recordTitleAttribute = 'Country';
+    protected static ?string $recordTitleAttribute = 'name';
 
     protected static ?string $navigationLabel = 'Countries';
 

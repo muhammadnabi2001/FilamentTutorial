@@ -15,6 +15,9 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use UnitEnum;
 
 class EmployeesResource extends Resource
@@ -22,11 +25,40 @@ class EmployeesResource extends Resource
     protected static ?string $model = Employee::class;
 
     protected static string|BackedEnum|null $navigationIcon = "heroicon-o-user-group";
-    
+
     protected static string|UnitEnum|null $navigationGroup = "Employee Management";
 
-    protected static ?string $recordTitleAttribute = 'Employee';
+    protected static ?string $recordTitleAttribute = 'first_name';
 
+
+    public static function getGlobalSearchResultTitle(Model $record): string|Htmlable
+    {
+        return $record->first_name;
+    }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['first_name', 'last_name'];
+    }
+
+    public static function getGlobalSearchResultDetails(Model $record): array
+    {
+        return [
+            'Name' => $record->first_name,
+            'Email' => $record->last_name,
+        ];
+    }
+    // public static function getGlobalSearchEloquentQuery(): Builder
+    // {
+    //     $query = parent::getGlobalSearchEloquentQuery();
+
+    //     if (! auth()->user()?->can('SearchCustomers')) {
+    //         // Block search results
+    //         return $query->whereRaw('1=0');
+    //     }
+
+    //     return $query;
+    // }
     public static function form(Schema $schema): Schema
     {
         return EmployeesForm::configure($schema);

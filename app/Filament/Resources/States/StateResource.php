@@ -27,7 +27,7 @@ class StateResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = "System Management";
 
-    protected static ?string $recordTitleAttribute = 'State';
+    protected static ?string $recordTitleAttribute = 'name';
 
     protected static ?string $navigationLabel = 'State';
 

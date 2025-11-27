@@ -28,7 +28,7 @@ class CityResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = "System Management";
 
-    protected static ?string $recordTitleAttribute = 'City';
+    // protected static ?string $recordTitleAttribute = 'City';
 
     protected static ?string $navigationLabel = 'City';
 

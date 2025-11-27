@@ -24,7 +24,7 @@ class AdminPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->globalSearch(false)
+            ->globalSearch(true)
             ->default()
             ->id('admin')
             ->path('admin')

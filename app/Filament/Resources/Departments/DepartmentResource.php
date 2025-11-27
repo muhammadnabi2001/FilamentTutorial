@@ -29,7 +29,7 @@ class DepartmentResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = "System Management";
 
-    protected static ?string $recordTitleAttribute = 'Departments';
+    protected static ?string $recordTitleAttribute = 'name';
 
     protected static ?string $modelLabel = 'Department';
 
